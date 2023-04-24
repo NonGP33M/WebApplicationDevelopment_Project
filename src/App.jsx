@@ -11,11 +11,12 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/scoreboard" element={<Scoreboard />} />
         <Route path="/sign_in" element={<Signin />} />
         <Route path="/scoreboard" element={<Scoreboard /> } />
       </Routes>
       <Footer />
-    </BrowserRouter> 
+    </BrowserRouter>
   );
 }
 
