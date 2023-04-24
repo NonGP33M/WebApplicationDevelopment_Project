@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-function Header() {
-  let isLogin = true;
+const Nav = () => {
+  const [isLogin, setIsLogin] = useState(true);
   return (
     <div className="container fixed z-50 bg-zinc-900 shadow flex justify-between w-full h-20 min-w-full items-center font-kanit drop-shadow-xl">
       <div className="flex text-white mx-12 text-xl">
@@ -15,7 +15,11 @@ function Header() {
       <div className="flex mx-12 text-white justify-between items-center">
         {!isLogin && (
           <div>
-            <Link className="mx-4 text-xl" to="/sign_in">
+            <Link
+              className="mx-4 text-xl"
+              to="/sign_in"
+              onClick={() => setIsLogin(true)}
+            >
               Sign in
             </Link>
             <Link
@@ -37,14 +41,33 @@ function Header() {
             <Link className="mx-4 text-xl" to="/scoreboard">
               Scoreboard
             </Link>
-            <Link className="mx-4 text-xl" to="/#">
+            <Link className="mx-4 text-xl dropdown dropdown-end">
               [Username]
+              <ul
+                tabIndex={0}
+                className="menu dropdown-content p-1 shadow bg-zinc-800 rounded-box w-40 mt-2"
+              >
+                <li>
+                  <Link className="mx-4 text-xl" to="/profile">
+                    Profile
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    className="mx-4 text-xl"
+                    to="/#"
+                    onClick={() => setIsLogin(false)}
+                  >
+                    Sign Out
+                  </Link>
+                </li>
+              </ul>
             </Link>
           </div>
         )}
       </div>
     </div>
   );
-}
+};
 
-export default Header;
+export default Nav;
