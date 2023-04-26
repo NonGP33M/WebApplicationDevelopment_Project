@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Signin from "./pages/Signin";
 import Scoreboard from "./pages/Scoreboard";
 import Nav from "./components/Nav";
+import Order from "./pages/Order";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/scoreboard" element={<Scoreboard />} />
         <Route path="/sign_in" element={<Signin />} />
         <Route path="/scoreboard" element={<Scoreboard />} />
+        <Route path="/order" element={<Order/>}/>
       </Routes>
       <Footer />
     </BrowserRouter>
