@@ -79,7 +79,7 @@ function Order(){
       }
     
     return(
-        <div class="mx-20">
+        <div class="mx-20" style={{ paddingBottom: "650px" }}>
             <br/><br/><br/><br/>
             <div class="flex justify-between ...">
                 <h2 class="mb-3 text-2xl font-semibold text-black-900 dark:text-white text-2xl">My Order List</h2>
