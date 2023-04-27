@@ -8,7 +8,7 @@ function Signup() {
                     <img className='scale-125 pt-10' src={require('../img/2.png')} alt='SignUpPic'/>
                 </div>
                 <div className="flex items-center justify-center lg:w-2/3">
-                    <div className=' w-12/12 max-w-[800px] px-20 pt-[80px]'>
+                    <div className=' w-12/12 max-w-[800px] px-20 pt-[75px]'>
                         <h1 className='text-3xl font-bold'>Sign up to [Title]</h1>
                             <div className='mt-10'>
                                 <label className='text-1xl font-medium'>Username</label>
