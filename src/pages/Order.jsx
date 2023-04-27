@@ -55,30 +55,34 @@ function Order() {
   const handleDeleteMyOrder = (orderId) => {
     //delete button in my order box
     if (UserN === "ddd") {
+      // ใส่ชื่อUserแทน ddd
       const filteredOrders = myOrders.filter((order) => order.id !== orderId);
       setMyOrders(filteredOrders);
     }
   };
   const handleTakeOrder = (orderId) => {
     //for take order
-    const takenOrder = orders.find((order) => order.id === orderId); //เอาboxที่โดนกด
-    const filteredOrders = orders.filter((order) => order.id !== orderId); //เอาboxออก
-    setOrders(filteredOrders);
-    const KeepOrderListItem = document.createElement("div");
-    // สำหรับส่งค่าใน OrderBox
-    let s = document.createElement("p");
-    let o = document.createElement("p");
-    let n = document.createElement("p");
-    s.innerHTML = "Store: " + takenOrder.store;
-    o.innerHTML = "Order: " + takenOrder.order;
-    n.innerHTML = "Name: " + takenOrder.name;
-    KeepOrderListItem.appendChild(s);
-    KeepOrderListItem.appendChild(o);
-    KeepOrderListItem.appendChild(n);
-    const orderListItem = document.createElement("li");
-    orderListItem.appendChild(KeepOrderListItem);
+    if (UserN !== "dd") {
+      // ใส่ชื่อUserแทน dd
+      const takenOrder = orders.find((order) => order.id === orderId); //เอาboxที่โดนกด
+      const filteredOrders = orders.filter((order) => order.id !== orderId); //เอาboxออก
+      setOrders(filteredOrders);
+      const KeepOrderListItem = document.createElement("div");
+      // สำหรับส่งค่าใน OrderBox
+      let s = document.createElement("p");
+      let o = document.createElement("p");
+      let n = document.createElement("p");
+      s.innerHTML = "Store: " + takenOrder.store;
+      o.innerHTML = "Order: " + takenOrder.order;
+      n.innerHTML = "Name: " + takenOrder.name;
+      KeepOrderListItem.appendChild(s);
+      KeepOrderListItem.appendChild(o);
+      KeepOrderListItem.appendChild(n);
+      const orderListItem = document.createElement("li");
+      orderListItem.appendChild(KeepOrderListItem);
 
-    //document.getElementById('ReceivedOrder').appendChild(orderListItem);
+      //document.getElementById('ReceivedOrder').appendChild(orderListItem);
+    }
   };
 
   return (
@@ -88,7 +92,7 @@ function Order() {
       <br />
       <br />
       <div class="flex justify-between ...">
-        <h2 class="mb-3 text-2xl font-semibold text-black-900 dark:text-white text-2xl">
+        <h2 class="mb-3 text-2xl font-semibold text-black-900">
           My Order List
         </h2>
         {/*button*/}
@@ -108,7 +112,9 @@ function Order() {
                   <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                     {/*header*/}
                     <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
-                      <h3 className="text-3xl font-semibold">Your Order</h3>
+                      <h3 className="text-3xl font-semibold dark:text-black">
+                        Your Order
+                      </h3>
                       <button
                         className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
                         onClick={() => setShowModal(false)}
@@ -123,7 +129,7 @@ function Order() {
                       <div class="mb-6">
                         <label
                           for="default-input"
-                          class="block mb-1 text-sm font-medium text-gray-900 dark:text-white"
+                          class="block mb-1 text-sm font-medium text-gray-900"
                         >
                           Restaurant
                         </label>
@@ -139,7 +145,7 @@ function Order() {
                       <div class="mb-6">
                         <label
                           for="default-input"
-                          class="block mb-1 text-sm font-medium text-gray-900 dark:text-white"
+                          class="block mb-1 text-sm font-medium text-gray-900"
                         >
                           MENU
                         </label>
@@ -155,7 +161,7 @@ function Order() {
                       <div class="mb-6">
                         <label
                           for="default-input"
-                          class="block mb-1 text-sm font-medium text-gray-900 dark:text-white"
+                          class="block mb-1 text-sm font-medium text-gray-900"
                         >
                           Delivery place
                         </label>
@@ -210,9 +216,7 @@ function Order() {
       </div>
       {/*Order List*/}
       <div class="pt-6">
-        <h2 class="mb-3 text-2xl font-semibold text-black-900 dark:text-white">
-          Order List
-        </h2>
+        <h2 class="mb-3 text-2xl font-semibold text-black-900">Order List</h2>
         <div id="OrderListSpace">
           {orders.map((order) => (
             <OrderBox
