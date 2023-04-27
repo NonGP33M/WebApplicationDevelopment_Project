@@ -52,13 +52,14 @@ function Order(){
       };
       
       const handleDeleteMyOrder = (orderId) => { //delete button in my order box
-        if(UserN === "ddd"){
+        if(UserN === "ddd"){ // ใส่ชื่อUserแทน ddd
             const filteredOrders = myOrders.filter(order => order.id !== orderId);
             setMyOrders(filteredOrders);
         }
       }
       const handleTakeOrder = (orderId) => { //for take order
-        const takenOrder = orders.find(order => order.id === orderId); //เอาboxที่โดนกด
+        if(UserN !== "dd"){ // ใส่ชื่อUserแทน dd
+            const takenOrder = orders.find(order => order.id === orderId); //เอาboxที่โดนกด
         const filteredOrders = orders.filter(order => order.id !== orderId); //เอาboxออก
         setOrders(filteredOrders);
         const KeepOrderListItem = document.createElement('div');
@@ -77,12 +78,13 @@ function Order(){
         
         //document.getElementById('ReceivedOrder').appendChild(orderListItem);
       }
+        }
     
     return(
         <div class="mx-20" style={{ paddingBottom: "650px" }}>
             <br/><br/><br/><br/>
             <div class="flex justify-between ...">
-                <h2 class="mb-3 text-2xl font-semibold text-black-900 dark:text-white text-2xl">My Order List</h2>
+                <h2 class="mb-3 text-2xl font-semibold text-black-900">My Order List</h2>
                 {/*button*/}
                 <div>
                     <button
@@ -102,7 +104,7 @@ function Order(){
                             <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                                 {/*header*/}
                                 <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
-                                <h3 className="text-3xl font-semibold">
+                                <h3 className="text-3xl font-semibold dark:text-black">
                                     Your Order
                                 </h3>
                                 <button
@@ -117,15 +119,15 @@ function Order(){
                                 {/*body*/}
                                 <div className="relative p-6 flex-auto">
                                     <div class="mb-6">
-                                        <label for="default-input" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Restaurant</label>
+                                        <label for="default-input" class="block mb-1 text-sm font-medium text-gray-900">Restaurant</label>
                                         <input type="text" id="sName" name="sName" value={sName} onChange={handleSNameChange} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 flex-1"/>
                                     </div>
                                     <div class="mb-6">
-                                        <label for="default-input" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">MENU</label>
+                                        <label for="default-input" class="block mb-1 text-sm font-medium text-gray-900">MENU</label>
                                         <input type="text" id="mName" name="mName" value={mName} onChange={handleMNameChange} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
                                     </div>
                                     <div class="mb-6">
-                                        <label for="default-input" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Delivery place</label>
+                                        <label for="default-input" class="block mb-1 text-sm font-medium text-gray-900">Delivery place</label>
                                         <input type="text" id="Deli" name="Deli" value={Deli} onChange={handleDeliChange} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
                                     </div>
 
@@ -170,7 +172,7 @@ function Order(){
             </div>
             {/*Order List*/}
             <div class='pt-6'>
-                <h2 class="mb-3 text-2xl font-semibold text-black-900 dark:text-white">Order List</h2>
+                <h2 class="mb-3 text-2xl font-semibold text-black-900">Order List</h2>
                 <div id="OrderListSpace">
                 {orders.map((order) => (
                     <OrderBox 
