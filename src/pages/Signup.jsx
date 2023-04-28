@@ -9,6 +9,8 @@ function Signup() {
     axios.post("http://localhost:5267/api/Auth/Register", {
       username: username,
       password: password,
+      firstname: "firstname",
+      lastname: "lastname",
     });
   };
   return (
