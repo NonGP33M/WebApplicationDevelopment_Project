@@ -1,7 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 function Signup() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const addUser = () => {
+    axios.post("http://localhost:5267/api/Auth/Register", {
+      username: username,
+      password: password,
+    });
+  };
   return (
     <div className="flex-col">
       <div className="flex w-full h-screen">
@@ -20,13 +29,9 @@ function Signup() {
               <input
                 className="bg-gray-200 w-full bordedr-2 border-gray-100 rounded-xl p-2 mt-2 text-1xl"
                 placeholder="Enter your username"
-              />
-            </div>
-            <div className="mt-3">
-              <label className="text-1xl font-medium">Email Address</label>
-              <input
-                className="bg-gray-200 w-full bordedr-2 border-gray-100 rounded-xl p-2 mt-2 text-1xl"
-                placeholder="Enter email address"
+                onChange={(event) => {
+                  setUsername(event.target.value);
+                }}
               />
             </div>
             <div className="mt-3">
@@ -35,6 +40,9 @@ function Signup() {
                 className="bg-gray-200 w-full bordedr-2 border-gray-100 rounded-xl p-2 mt-2 text-1xl"
                 placeholder="Enter your password"
                 type="password"
+                onChange={(event) => {
+                  setPassword(event.target.value);
+                }}
               />
             </div>
             <div className="mt-3">
