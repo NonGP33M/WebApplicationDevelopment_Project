@@ -6,6 +6,7 @@ import Scoreboard from "./pages/Scoreboard";
 import Nav from "./components/Nav";
 import Order from "./pages/Order";
 import Signup from "./pages/Signup";
+import Profile from "./pages/Profile";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/sign_in" element={<Signin />} />
         <Route path="/sign_up" element={<Signup />} />
         <Route path="/order" element={<Order />} />
+        <Route path="/profile" element={<Profile/>} />
       </Routes>
       <Footer />
     </BrowserRouter>
