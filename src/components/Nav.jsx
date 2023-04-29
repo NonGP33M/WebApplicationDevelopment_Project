@@ -55,7 +55,7 @@ const Nav = () => {
               Sign in
             </Link>
             <Link
-              className="mx-4 text-xl rounded-lg border-2 py-1 px-2"
+              className="mx-4 text-xl rounded-lg border-2 py-1 px-2  hover:bg-white hover:text-black duration-500"
               to="/sign_up"
             >
               Sign up

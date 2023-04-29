@@ -50,6 +50,12 @@ function Signup() {
     }
   };
 
+  const enterEvent = async (event) => {
+    if (event.key === "Enter") {
+      await submitSignUp();
+    }
+  };
+
   return (
     <div className="flex-col">
       <div className="flex w-full h-screen">
@@ -125,6 +131,7 @@ function Signup() {
                 onChange={(event) => {
                   setRePassword(event.target.value);
                 }}
+                onKeyDown={enterEvent}
               />
             </div>
             <div className="mt-10 flex flex-col gap-y-4">
