@@ -1,18 +1,42 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function Signup() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const addUser = () => {
-    axios.post("http://localhost:5267/api/Auth/Register", {
-      username: username,
-      password: password,
-      firstname: "firstname",
-      lastname: "lastname",
-    });
+  const [rePassword, setRePassword] = useState("");
+  const [matchPassword, setMatchPassword] = useState(false);
+  const [invalidPassword, setInvalidPassword] = useState(true);
+  const navigate = useNavigate();
+
+  const submitSignUp = () => {
+    if (password !== rePassword || password === "") {
+      setMatchPassword(false);
+      setInvalidPassword(true);
+      console.log("Re-Enter Password Incorrect");
+    } else if (
+      username.length === 0 /*|| firstName.length===0 || lastName.length===0*/
+    ) {
+      setMatchPassword(true);
+      setInvalidPassword(true);
+      console.log("No Username");
+    } else {
+      console.log("Valid");
+      addUser();
+    }
   };
+  const addUser = async () => {
+    await axios.post("http://localhost:5267/api/Auth/Register", {
+      Username: username,
+      Password: password,
+      FirstName: "firstname",
+      LastName: "lastname",
+    });
+    navigate("/#");
+    console.log("User Added");
+  };
+
   return (
     <div className="flex-col">
       <div className="flex w-full h-screen">
@@ -53,15 +77,18 @@ function Signup() {
                 className="bg-gray-200 w-full bordedr-2 border-gray-100 rounded-xl p-2 mt-2 text-1xl"
                 placeholder="Re-Enter password"
                 type="password"
+                onChange={(event) => {
+                  setRePassword(event.target.value);
+                }}
               />
             </div>
             <div className="mt-10 flex flex-col gap-y-4">
-              <Link
+              <h2
                 className="active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-3 rounded-xl bg-black text-white font-bold text-1xl text-center"
-                to="/#"
+                onClick={() => submitSignUp()}
               >
                 Sign up
-              </Link>
+              </h2>
             </div>
           </div>
         </div>
