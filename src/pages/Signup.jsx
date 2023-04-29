@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function Signup() {
@@ -10,7 +10,7 @@ function Signup() {
   const [invalidPassword, setInvalidPassword] = useState(true);
   const navigate = useNavigate();
 
-  const submitSignUp = () => {
+  const submitSignUp = async () => {
     if (password !== rePassword || password === "") {
       setMatchPassword(false);
       setInvalidPassword(true);
@@ -23,18 +23,22 @@ function Signup() {
       console.log("No Username");
     } else {
       console.log("Valid");
-      addUser();
+      await addUser();
     }
   };
   const addUser = async () => {
-    await axios.post("http://localhost:5267/api/Auth/Register", {
-      Username: username,
-      Password: password,
-      FirstName: "firstname",
-      LastName: "lastname",
-    });
-    navigate("/#");
-    console.log("User Added");
+    try {
+      await axios.post("https://localhost:5267/api/Auth/Register", {
+        Username: username,
+        Password: password,
+        FirstName: "firstname",
+        LastName: "lastname",
+      });
+      navigate("/sign_in");
+      console.log("User Added");
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
