@@ -2,10 +2,22 @@ import React from "react";
 import { useState } from "react";
 import OrderBox from "../components/OrderBox";
 import MyOrderBox from "../components/MyOrderBox";
+import { useState } from "react";
+import OrderBox from "../components/OrderBox";
+import MyOrderBox from "../components/MyOrderBox";
 
 function Order() {
   const [UserN] = useState("ddd"); //for keep Username
+function Order() {
+  const [UserN] = useState("ddd"); //for keep Username
 
+  const [showModal, setShowModal] = React.useState(false); //for modal
+  const [orders, setOrders] = useState([]); //for OrderList in Order List div
+  const [myOrders, setMyOrders] = useState([]); //for MyOrderList in My Order div
+  const [sName, setSName] = useState(""); //for Restaurant name
+  const [mName, setMName] = useState(""); //for Order name
+  const [Deli, setDeli] = useState(""); //for Delivery place name
+  const [isDisabled, setIsDisabled] = useState(true); //for disabled button for submit in modal
   const [showModal, setShowModal] = React.useState(false); //for modal
   const [orders, setOrders] = useState([]); //for OrderList in Order List div
   const [myOrders, setMyOrders] = useState([]); //for MyOrderList in My Order div
@@ -98,11 +110,11 @@ function Order() {
         {/*button*/}
         <div>
           <button
-            className="bg-slate-950 text-white active:bg-gray-600 font-bold text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+            className="bg-slate-950 text-white active:bg-gray-600 font-bold text-lg px-8 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
             type="button"
             onClick={() => setShowModal(true)}
           >
-            PlaceOrder
+            Place Order
           </button>
           {showModal ? (
             <>
@@ -211,6 +223,7 @@ function Order() {
             OrderN={order.order}
             Deli={order.deli}
             onDelete={handleDeleteMyOrder}
+            status="ACCEPTED"
           />
         ))}
       </div>
@@ -237,3 +250,4 @@ function Order() {
 }
 
 export default Order;
+
