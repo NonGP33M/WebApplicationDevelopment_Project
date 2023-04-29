@@ -1,22 +1,44 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { getCookie, deleteCookie } from "cookies-next";
+import jwtDecode from "jwt-decode";
 
 const Nav = () => {
-  const [username, setUsername] = useState([]);
-  const [isLogin, setIsLogin] = useState(false);
-  // const getUsername = () => {
-  //   axios
-  //     .get(
-  //       "https://localhost:5267/api/User/GetUserById/00f6c7a8-7f99-4ca4-a661-61b707ac8b57"
-  //     )
-  //     .then((response) => {
-  //       setUsername(response.data);
-  //     });
-  // };
-  // useEffect(() => {
-  //   getUsername();
-  // }, []);
+  const [user, setUser] = useState(null);
+  const token = getCookie("accessToken");
+  const navigate = useNavigate();
+
+  const getUser = async () => {
+    try {
+      await axios
+        .get(
+          `https://localhost:5267/api/User/GetUserById/${
+            jwtDecode(token).UserId
+          }`
+        )
+        .then((response) => {
+          setUser(response.data);
+        });
+    } catch (error) {
+      deleteCookie("accessToken");
+      console.log("No token");
+      console.log(token);
+    }
+  };
+
+  const signOutEvent = () => {
+    deleteCookie("accessToken");
+    navigate("/#");
+    window.location.reload();
+  };
+
+  useEffect(() => {
+    if (token) {
+      getUser();
+    }
+  }, []);
+
   return (
     <div className="container fixed z-50 bg-zinc-900 shadow flex justify-between w-full h-20 min-w-full items-center font-kanit drop-shadow-xl">
       <div className="flex text-white mx-12 text-xl">
@@ -27,13 +49,9 @@ const Nav = () => {
 
       {/* Before Signed In */}
       <div className="flex mx-12 text-white justify-between items-center">
-        {!isLogin && (
+        {token == null && (
           <div>
-            <Link
-              className="mx-4 text-xl"
-              to="/sign_in"
-              onClick={() => setIsLogin(true)}
-            >
+            <Link className="mx-4 text-xl" to="/sign_in">
               Sign in
             </Link>
             <Link
@@ -44,7 +62,7 @@ const Nav = () => {
             </Link>
           </div>
         )}
-        {isLogin && (
+        {token != null && (
           <div>
             <Link className="mx-4 text-xl" to="/#">
               Home
@@ -55,9 +73,12 @@ const Nav = () => {
             <Link className="mx-4 text-xl" to="/scoreboard">
               Scoreboard
             </Link>
-            <Link className="mx-4 text-xl dropdown dropdown-end">
-              {/* {username.username} */}
-              [username]
+            <h2
+              tabIndex={0}
+              className="mx-4 text-xl dropdown dropdown-end cursor-pointer"
+            >
+              {user ? user.username : ""}
+
               <ul
                 tabIndex={0}
                 className="menu dropdown-content p-1 shadow bg-zinc-800 rounded-box w-40 mt-2"
@@ -68,16 +89,12 @@ const Nav = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    className="mx-4 text-xl"
-                    to="/#"
-                    onClick={() => setIsLogin(false)}
-                  >
+                  <Link className="mx-4 text-xl" onClick={() => signOutEvent()}>
                     Sign Out
                   </Link>
                 </li>
               </ul>
-            </Link>
+            </h2>
           </div>
         )}
       </div>
