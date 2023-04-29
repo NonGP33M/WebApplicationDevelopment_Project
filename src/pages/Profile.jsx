@@ -1,31 +1,73 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { deleteCookie, getCookie } from "cookies-next";
+import { useNavigate } from "react-router-dom";
+import jwtDecode from "jwt-decode";
+import axios from "axios";
 
 function Profile() {
+  const [user, setUser] = useState(null);
+  const token = getCookie("accessToken");
+  const navigate = useNavigate();
+
+  const getUser = async () => {
+    try {
+      await axios
+        .get(
+          `https://localhost:5267/api/User/GetUserById/${
+            jwtDecode(token).UserId
+          }`
+        )
+        .then((response) => {
+          setUser(response.data);
+        });
+    } catch (error) {
+      deleteCookie("accessToken");
+      console.log("No token");
+      console.log(token);
+    }
+  };
+
+  useEffect(() => {
+    if (token) {
+      getUser();
+    }
+  }, []);
+
   return (
-    <div class="mx-20 pt-32" style={{ paddingBottom: "650px" }}>
-      <div class="flex justify-center">
-        <img
-          className="rounded-full pr-7"
-          src="https://www.nicepng.com/png/detail/274-2744819_people-silhouette-avatar-business-man-icon.png"
-          alt="user picture"
-          width="300px"
-        ></img>
-        <div class="pt-20 px-11">
-          <p class="font-black text-5xl">[Username]</p>
-          <br />
-          <span class="font-medium text-4xl">[First name] [Last name]</span>
-        </div>
-        <div class="flex-col pt-14">
-          <p class="flex justify-center font-medium text-2xl">Score</p>
-          <p class="flex justify-center font-black text-5xl">30</p>
-          <div class="flex justify-center pt-2">
-            <div class="pr-4">
-              <p class="flex justify-center text-base">Success</p>
-              <p class="flex justify-center text-lg">2</p>
-            </div>
-            <div>
-              <p class="flex justify-center text-base">Failed</p>
-              <p class="flex justify-center text-lg">0</p>
+    <div className="flex h-screen w-full bg-gray-500 justify-center">
+      <div className="flex h-screen w-[70vw] justify-center items-start bg-white">
+        <div className="flex w-[70vw] px-[2vw] pt-[8vw] justify-between">
+          <img
+            className="rounded-full w-[20vw]"
+            src="https://www.nicepng.com/png/detail/274-2744819_people-silhouette-avatar-business-man-icon.png"
+            alt="user"
+          />
+          <div className="w-[30vw] pt-14">
+            <p className="text-6xl font-bold">
+              {user ? user.username : "[Username]"}
+            </p>
+            <br />
+            <span className="text-3xl">
+              {user ? user.firstName : "[Firstname]"}{" "}
+              {user ? user.lastName : "[Lastname]"}
+            </span>
+          </div>
+          <div className="flex-col pt-14 w-[10vw]">
+            <p className="flex justify-center text-2xl font-bold">Score</p>
+            <p className="flex justify-center text-5xl">30</p>
+            <div className="flex justify-center pt-2">
+              <div className="pr-4">
+                <p className="flex justify-center text-base font-semibold">
+                  Success
+                </p>
+                <p className="flex justify-center text-xl font-semibold">2</p>
+              </div>
+              <div>
+                <p className="flex justify-center text-base font-semibold">
+                  Failed
+                </p>
+                <p className="flex justify-center text-xl font-semibold">0</p>
+              </div>
             </div>
           </div>
         </div>
