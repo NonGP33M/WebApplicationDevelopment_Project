@@ -5,7 +5,7 @@ import MyOrderBox from "../components/MyOrderBox";
 function Order() {
   const [UserN] = useState("ddd"); //for keep Username
 
-  const [showModal, setShowModal] = React.useState(false); //for modal
+  const [showModal, setShowModal] = useState(false); //for modal
   const [orders, setOrders] = useState([]); //for OrderList in Order List div
   const [myOrders, setMyOrders] = useState([]); //for MyOrderList in My Order div
   const [sName, setSName] = useState(""); //for Restaurant name
@@ -85,7 +85,7 @@ function Order() {
   };
 
   return (
-    <div class="mx-20" style={{ paddingBottom: "650px" }}>
+    <div class="mx-[20vh]">
       <br />
       <br />
       <br />
