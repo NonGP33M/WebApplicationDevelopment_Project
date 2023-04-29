@@ -2,10 +2,22 @@ import React from "react";
 import { useState } from "react";
 import OrderBox from "../components/OrderBox";
 import MyOrderBox from "../components/MyOrderBox";
+import { useState } from "react";
+import OrderBox from "../components/OrderBox";
+import MyOrderBox from "../components/MyOrderBox";
 
 function Order() {
   const [UserN] = useState("ddd"); //for keep Username
+function Order() {
+  const [UserN] = useState("ddd"); //for keep Username
 
+  const [showModal, setShowModal] = React.useState(false); //for modal
+  const [orders, setOrders] = useState([]); //for OrderList in Order List div
+  const [myOrders, setMyOrders] = useState([]); //for MyOrderList in My Order div
+  const [sName, setSName] = useState(""); //for Restaurant name
+  const [mName, setMName] = useState(""); //for Order name
+  const [Deli, setDeli] = useState(""); //for Delivery place name
+  const [isDisabled, setIsDisabled] = useState(true); //for disabled button for submit in modal
   const [showModal, setShowModal] = React.useState(false); //for modal
   const [orders, setOrders] = useState([]); //for OrderList in Order List div
   const [myOrders, setMyOrders] = useState([]); //for MyOrderList in My Order div
@@ -238,3 +250,4 @@ function Order() {
 }
 
 export default Order;
+
