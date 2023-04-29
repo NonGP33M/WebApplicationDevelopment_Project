@@ -1,5 +1,6 @@
 import React from "react";
 import Footer from "../components/Footer";
+import { Link } from "react-router-dom";
 
 function Home() {
   const profile = [
@@ -17,7 +18,7 @@ function Home() {
     },
     {
       url: require("../img/Bank.jpg"),
-      style: "pt-[10vw]",
+      style: "lg:pt-[6vw] pt-[10vw]",
       id: "64010765",
       name: "วรเมธ ธรรมจริยาวัฒน์",
     },
@@ -29,7 +30,7 @@ function Home() {
     },
     {
       url: require("../img/Tien.jpg"),
-      style: "scale-125 pt-[9vw]",
+      style: "scale-125 lg:pt-[6vw] pt-[4vw]",
       id: "64010792",
       name: "วสันต์ อุดมธนทรัพย์",
     },
@@ -42,36 +43,45 @@ function Home() {
   ];
 
   return (
-    <div className="flex-col">
-      <div className="relative flex flex-wrap h-screen items-center justify-center font-kanit caret-transparent">
-        <div className="text-center my-28  drop-shadow-md">
-          <p className="text-[4rem]">จะกินอะไรก็สั่งมา</p>
-          <p className="text-[2rem]">- ไอ้พวกเวร -</p>
+    <div className="flex-col min-w-[390px]">
+      <div className="min-[390]:absolute relative flex flex-col sm:flex-row sm:gap-0 gap-[15vh] lg:h-screen h-[100vh] items-center justify-center font-kanit caret-transparent duration-500">
+        <div className="flex-col  text-center drop-shadow-md z-10 sm:pt-0 pt-[15vh] duration-1000">
+          <p className="lg:text-[4rem] text-[3rem] duration-500">
+            จะกินอะไรก็สั่งมา
+          </p>
+          <p className="lg:text-[2rem] text-[1.5rem] duration-500">
+            - ไอ้พวกเวร -
+          </p>
+          <Link to={"/order"} className="flex justify-center">
+            <h2 className="text-[1.5rem] rounded-lg border-4 drop-shadow-sm border-black mt-10 px-[30px] hover:bg-black hover:text-white duration-500">
+              Order now!
+            </h2>
+          </Link>
         </div>
 
-        <div className="w-[500px] right-[50px] rotate-[25deg]">
+        <div className="relative sm:w-[35vw] w-[80vw] right-[1vh] min-w-[300px] max-w-[400px] sm:pr-0 pr-5 rotate-[25deg] z-0 ">
           <img src={require("../img/homePic1.png")} alt="homePic1" />
         </div>
       </div>
 
       <div className="relative flex h-auto bg-zinc-800 justify-center">
-        <div className="flex flex-col text-center text-white font-kanit caret-transparent mt-28 items-center">
-          <p className="text-[4rem]">จัดทำโดย</p>
+        <div className="flex flex-col text-center text-white font-kanit caret-transparent sm:mt-28 mt-10 items-center">
+          <p className="sm:text-[4rem] text-[2rem] duration-1000">จัดทำโดย</p>
 
-          <div className="flex flex-wrap my-[5vw] gap-x-[16vw] gap-y-[5vw] justify-center pt-[5vw]">
+          <div className="flex flex-wrap my-[5vw] gap-x-[16vw] gap-y-[5vw] justify-center">
             {profile.map((item, key) => (
               <>
                 <div>
                   <div
-                    className="flex w-[30vw] h-[30vw] bg-white justify-center items-center overflow-hidden"
+                    className="flex lg:max-w-[300px] lg:max-h-[300px] max-h-[300px] max-w-[300px] bg-white justify-center items-center overflow-hidden rounded-2xl duration-1000"
                     key={key}
                   >
                     <img src={item.url} alt="Oot" className={item.style} />
                     {console.log(item.url)}
                   </div>
                   <div className="pt-[1vw]">
-                    <div className="text-[2vw]">{item.id}</div>
-                    <div className="text-[1.2vw]">{item.name}</div>
+                    <div className="text-[2rem]">{item.id}</div>
+                    <div className="text-[1.5rem]">{item.name}</div>
                   </div>
                 </div>
               </>

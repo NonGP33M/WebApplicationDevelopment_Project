@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { deleteCookie, getCookie } from "cookies-next";
-import { useNavigate } from "react-router-dom";
 import jwtDecode from "jwt-decode";
 import axios from "axios";
 
 function Profile() {
   const [user, setUser] = useState(null);
   const token = getCookie("accessToken");
-  const navigate = useNavigate();
 
   const getUser = async () => {
     try {

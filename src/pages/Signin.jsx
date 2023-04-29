@@ -30,6 +30,12 @@ function Signin() {
     }
   };
 
+  const enterEvent = async (event) => {
+    if (event.key === "Enter") {
+      await submitSignIn();
+    }
+  };
+
   return (
     <div className="flex-col">
       <div className="flex w-full">
@@ -51,6 +57,7 @@ function Signin() {
                 onChange={(event) => {
                   setUsername(event.target.value);
                 }}
+                onKeyDown={enterEvent}
               />
             </div>
             <div className="mt-3">
@@ -62,6 +69,7 @@ function Signin() {
                 onChange={(event) => {
                   setPassword(event.target.value);
                 }}
+                onKeyDown={enterEvent}
               />
             </div>
             <div className="mt-10 flex flex-col gap-y-4">
