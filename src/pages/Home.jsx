@@ -1,4 +1,5 @@
 import React from "react";
+import Footer from "../components/Footer";
 
 function Home() {
   return (
@@ -20,6 +21,7 @@ function Home() {
           <p className="text-[2rem]">- ไอ้พวกเวร -</p>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

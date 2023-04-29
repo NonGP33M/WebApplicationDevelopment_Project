@@ -26,22 +26,22 @@ function Signin() {
       navigate("/#");
       window.location.reload();
     } catch (error) {
-      console.log(error);
+      setInvalid(true);
     }
   };
 
   return (
     <div className="flex-col">
-      <div className="flex w-full h-screen">
-        <div className="absolute lg:flex w-[60vw] h-[100vh] items-center justify-center bg-gray-200">
+      <div className="flex w-full">
+        <div className="lg:flex w-[60vw] h-[100vh] items-center justify-center bg-gray-200">
           <img
-            className="w-[45vw] rotate-[25deg] pt-[50px]"
+            className="w-[43vw] rotate-[25deg] pt-[50px]"
             src={require("../img/homePic1.png")}
             alt="homePic1"
           />
         </div>
         <div className="absolute flex max-w-[66vw] h-[100vh] items-center justify-center lg:w-2/3 bg-white right-0 top-[50%] translate-y-[-50%]">
-          <div className=" w-12/12 max-w-[800px] px-20 pt-[65px]">
+          <div className=" w-12/12 w-[35vw]">
             <h1 className="text-3xl font-bold">Sign in to [Title]</h1>
             <div className="mt-10">
               <label className="text-1xl font-medium">Username</label>
@@ -72,6 +72,9 @@ function Signin() {
                 Sign in
               </h2>
             </div>
+            <h2 className="my-[10px] text-center text-red-600 h-10">
+              {invalid ? "* Invalid username or password *" : ""}
+            </h2>
           </div>
         </div>
       </div>

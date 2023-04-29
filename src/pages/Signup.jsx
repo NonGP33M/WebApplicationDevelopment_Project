@@ -3,26 +3,34 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function Signup() {
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [username, setUsername] = useState("");
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
   const [password, setPassword] = useState("");
   const [rePassword, setRePassword] = useState("");
-  const [matchPassword, setMatchPassword] = useState(false);
-  const [invalidPassword, setInvalidPassword] = useState(true);
+  const [validSignIn, setValidSignIn] = useState(false);
+  const [errorText, setErrorText] = useState("");
   const navigate = useNavigate();
 
   const submitSignUp = async () => {
-    if (password !== rePassword || password === "") {
-      setMatchPassword(false);
-      setInvalidPassword(true);
-      console.log("Re-Enter Password Incorrect");
-    } else if (
-      username.length === 0 /*|| firstName.length===0 || lastName.length===0*/
-    ) {
-      setMatchPassword(true);
-      setInvalidPassword(true);
-      console.log("No Username");
+    if (!validSignIn) {
+      if (firstname.length === 0) {
+        setErrorText("* First name is required *");
+      } else if (lastname.length === 0) {
+        setErrorText("* Last name is required *");
+      } else if (phoneNumber.length === 0) {
+        setErrorText("* Phone number is required *");
+      } else if (username.length === 0) {
+        setErrorText("* Username is required *");
+      } else if (password.length === 0) {
+        setErrorText("* Password is required *");
+      } else if (password !== rePassword) {
+        setErrorText("* Passwords do not match *");
+      } else {
+        setValidSignIn(true);
+      }
     } else {
-      console.log("Valid");
       await addUser();
     }
   };
@@ -31,8 +39,9 @@ function Signup() {
       await axios.post("https://localhost:5267/api/Auth/Register", {
         Username: username,
         Password: password,
-        FirstName: "firstname",
-        LastName: "lastname",
+        FirstName: firstname,
+        LastName: lastname,
+        PhoneNumber: phoneNumber,
       });
       navigate("/sign_in");
       console.log("User Added");
@@ -46,15 +55,47 @@ function Signup() {
       <div className="flex w-full h-screen">
         <div className="absolute lg:flex w-[65vw] h-[100vh] items-center justify-center bg-gray-200">
           <img
-            className="w-[40vw] rotate-[25deg] pt-[50px]"
+            className="w-[35vw] rotate-[25deg] pt-[50px]"
             src={require("../img/2.png")}
             alt="SignUpPic"
           />
         </div>
         <div className="absolute flex max-w-[66vw] h-[100vh] items-center justify-center lg:w-2/3 bg-white right-0 top-[50%] translate-y-[-50%]">
-          <div className=" w-12/12 max-w-[800px] px-20 pt-[75px]">
+          <div className=" w-12/12 w-[35vw] pt-[75px]">
             <h1 className="text-3xl font-bold">Sign up to [Title]</h1>
-            <div className="mt-10">
+            <div className="flex flex-row justify-between mt-10">
+              <div className="w-[17vw]">
+                <label className="text-1xl font-medium">First name</label>
+                <input
+                  className="bg-gray-200 w-full bordedr-2 border-gray-100 rounded-xl p-2 mt-2 text-1xl"
+                  placeholder="Enter your first name"
+                  onChange={(event) => {
+                    setFirstname(event.target.value);
+                  }}
+                />
+              </div>
+              <div className="w-[17vw]">
+                <label className="text-1xl font-medium">Last name</label>
+                <input
+                  className="bg-gray-200 w-full bordedr-2 border-gray-100 rounded-xl p-2 mt-2 text-1xl"
+                  placeholder="Enter your last name"
+                  onChange={(event) => {
+                    setLastname(event.target.value);
+                  }}
+                />
+              </div>
+            </div>
+            <div className="mt-3">
+              <label className="text-1xl font-medium">Phone number</label>
+              <input
+                className="bg-gray-200 w-full bordedr-2 border-gray-100 rounded-xl p-2 mt-2 text-1xl"
+                placeholder="Enter your phone number"
+                onChange={(event) => {
+                  setPhoneNumber(event.target.value);
+                }}
+              />
+            </div>
+            <div className="mt-3">
               <label className="text-1xl font-medium">Username</label>
               <input
                 className="bg-gray-200 w-full bordedr-2 border-gray-100 rounded-xl p-2 mt-2 text-1xl"
@@ -91,9 +132,12 @@ function Signup() {
                 className="active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-3 rounded-xl bg-black text-white font-bold text-1xl text-center"
                 onClick={() => submitSignUp()}
               >
-                Sign up
+                Create account
               </h2>
             </div>
+            <h2 className="my-[10px] text-center text-red-600 h-10">
+              {!validSignIn ? errorText : ""}
+            </h2>
           </div>
         </div>
       </div>
