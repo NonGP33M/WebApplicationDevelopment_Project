@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react";
+import { React, useState } from "react";
 import OrderBox from "../components/OrderBox";
 import MyOrderBox from "../components/MyOrderBox";
 
