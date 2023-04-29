@@ -5,15 +5,13 @@ function OrderBox(props) {
 
   return (
     <div>
-      <div className="inOrderBox inline-block w-3/5 min-h-0 bg-black border border-gray-300 rounded p-2">
-        <h4 class='text-white'>[{props.StoreN}]</h4>
-        <p class='text-white'>Order : {props.OrderN}</p>
-        <p class='text-white'>Delivery place : {props.Deli}</p>
-        <p class='text-white'>Score : {props.Score}</p>
-        <div class='flex justify-between ...'>
-          <span class='text-white'>Order by: {props.Username}</span>
-          <button onClick={handleTakeOrder} class='bg-green-500 hover:bg-gray-700 text-white font-bold py-2 px-4 border border-black-700 rounded'>Take Order</button>
-        </div>
+      <div className="mb-[10px] inOrderBox inline-block w-3/5 min-h-0 bg-black border border-gray-300 rounded p-2">
+        <h4 className="text-white"><strong>[{props.StoreN}]</strong></h4>
+        <p className="text-white"><strong>Order :</strong> {props.OrderN}</p>
+        <p className="text-white"><strong>Delivery place :</strong> {props.Deli}</p>
+        <p className="text-white"><strong>Score :</strong> {props.Score}</p>
+        <p className="text-white"><strong>Order by:</strong> {props.Username}</p>
+        <button onClick={handleTakeOrder} className="mt-[5px] bg-green-500 hover:bg-gray-700 text-white font-bold py-1 px-4 border border-black-700 rounded">Take Order</button>
       </div>
     </div>
   );
