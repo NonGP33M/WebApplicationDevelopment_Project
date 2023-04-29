@@ -34,7 +34,7 @@ function Profile() {
   }, []);
 
   return (
-    <div className="flex h-screen w-full bg-gray-500 justify-center">
+    <div className="flex h-screen w-full bg-gray-400 justify-center">
       <div className="flex h-screen w-[70vw] justify-center items-start bg-white">
         <div className="flex w-[70vw] px-[2vw] pt-[8vw] justify-between">
           <img
@@ -54,19 +54,25 @@ function Profile() {
           </div>
           <div className="flex-col pt-14 w-[10vw]">
             <p className="flex justify-center text-2xl font-bold">Score</p>
-            <p className="flex justify-center text-5xl">30</p>
+            <p className="flex justify-center text-5xl">
+              {user ? user.score : "--"}
+            </p>
             <div className="flex justify-center pt-2">
               <div className="pr-4">
                 <p className="flex justify-center text-base font-semibold">
                   Success
                 </p>
-                <p className="flex justify-center text-xl font-semibold">2</p>
+                <p className="flex justify-center text-xl font-semibold">
+                  {user ? user.success : "--"}
+                </p>
               </div>
               <div>
                 <p className="flex justify-center text-base font-semibold">
                   Failed
                 </p>
-                <p className="flex justify-center text-xl font-semibold">0</p>
+                <p className="flex justify-center text-xl font-semibold">
+                  {user ? user.failed : "--"}
+                </p>
               </div>
             </div>
           </div>
