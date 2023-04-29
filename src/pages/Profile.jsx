@@ -36,7 +36,7 @@ function Profile() {
   return (
     <div className="flex h-screen w-full bg-gray-500 justify-center">
       <div className="flex h-screen w-[70vw] justify-center items-start bg-white">
-        <div className="flex w-[70vw] px-[2vw] pt-[5vw] justify-between">
+        <div className="flex w-[70vw] px-[2vw] pt-[8vw] justify-between">
           <img
             className="rounded-full w-[20vw]"
             src="https://www.nicepng.com/png/detail/274-2744819_people-silhouette-avatar-business-man-icon.png"
