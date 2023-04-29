@@ -41,7 +41,7 @@ function Signup() {
         Password: password,
         FirstName: firstname,
         LastName: lastname,
-        PhoneNumber: phoneNumber,
+        Tel: phoneNumber,
       });
       navigate("/sign_in");
       console.log("User Added");
