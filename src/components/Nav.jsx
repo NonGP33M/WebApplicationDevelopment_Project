@@ -4,7 +4,7 @@ import axios from "axios";
 import { getCookie, deleteCookie } from "cookies-next";
 import jwtDecode from "jwt-decode";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faBurger } from "@fortawesome/free-solid-svg-icons";
 const Nav = () => {
   const [user, setUser] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
@@ -45,9 +45,10 @@ const Nav = () => {
   }, []);
 
   return (
-    <div className="container fixed z-50 bg-zinc-900 shadow flex justify-between w-full h-[108px] min-w-full items-center font-kanit drop-shadow-xl">
+    <div className="container fixed z-50 bg-zinc-900 shadow flex justify-between w-full h-[80px] min-w-full items-center font-kanit drop-shadow-xl">
       <div className="flex text-white mx-12 text-xl justify-between items-center w-full">
-        <Link className="mx-4 text-xl" to="/#">
+        <Link className="mx-4 text-xl whitespace-nowrap" to="/#">
+          <FontAwesomeIcon icon={faBurger} className="mr-5" />
           จะกินอะไรก็สั่งมา
         </Link>
         <span className={"cursor-pointer mx-12 md:hidden flex duration-500"}>
@@ -59,7 +60,7 @@ const Nav = () => {
         </span>
       </div>
       <ul
-        className={`md:hidden z-[0] absolute w-screen lg:opacity-0 top-[108px]  transition-all ease-in duration-500 ${
+        className={`md:hidden z-[0] absolute w-screen lg:opacity-0 top-[80px]  transition-all ease-in duration-500 ${
           isOpen ? "left-0 opacity-90 bg-zinc-800" : "left-[-1000px] opacity-0 "
         }`}
       >
