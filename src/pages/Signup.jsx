@@ -63,8 +63,8 @@ function Signup() {
             alt="SignUpPic"
           />
         </div>
-        <div className="absolute flex lg:max-w-[66vw] h-[100vh] items-center justify-center w-full lg:w-2/3 bg-white right-0 top-[50%] translate-y-[-50%] duration-1000">
-          <div className="w-full px-[15vw] lg:px-[10vw] md:px-[20vw] sm:px-[12vw] pt-[15vh] lg:pt-[10vh] md:pt-[8vh] duration-1000">
+        <div className="absolute flex lg:max-w-[66vw] min-w-[390px] h-[100vh] items-center justify-center w-full lg:w-2/3 bg-white md:right-0 top-[50%] translate-y-[-50%] duration-1000">
+          <div className="w-full px-[15vw] lg:px-[10vw] md:px-[20vw] sm:px-[12vw] sm:pt-[15vh] pt-[10vh] lg:pt-[10vh] md:pt-[8vh] duration-1000">
             <h1 className="text-3xl font-bold">Sign up to [Title]</h1>
             <div className="flex lg:flex-row flex-col justify-normal lg:mt-10 mt-[2vw] gap-5">
               <div className="flex flex-col w-full">

@@ -46,8 +46,8 @@ function Signin() {
             alt="homePic1"
           />
         </div>
-        <div className="absolute flex md:max-w-[66vw] h-[100vh] items-center justify-center w-full md:w-2/3 bg-white md:right-0 top-[50%] translate-y-[-50%] duration-1000">
-          <div className="w-full px-[15vw] sm:px-[12vw]">
+        <div className="absolute flex md:max-w-[66vw] min-w-[390px] h-[100vh] items-center justify-center w-full md:w-2/3 bg-white md:right-0 top-[50%] translate-y-[-50%] duration-1000">
+          <div className="w-full px-[15vw] sm:px-[12vw] duration-1000">
             <h1 className="md:text-[2rem] text-[2rem] font-bold">
               Sign in to [Title]
             </h1>
