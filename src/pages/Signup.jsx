@@ -14,23 +14,20 @@ function Signup() {
   const navigate = useNavigate();
 
   const submitSignUp = async () => {
-    if (!validSignIn) {
-      if (firstname.length === 0) {
-        setErrorText("* First name is required *");
-      } else if (lastname.length === 0) {
-        setErrorText("* Last name is required *");
-      } else if (phoneNumber.length === 0) {
-        setErrorText("* Phone number is required *");
-      } else if (username.length === 0) {
-        setErrorText("* Username is required *");
-      } else if (password.length === 0) {
-        setErrorText("* Password is required *");
-      } else if (password !== rePassword) {
-        setErrorText("* Passwords do not match *");
-      } else {
-        setValidSignIn(true);
-      }
+    if (firstname.length === 0) {
+      setErrorText("* First name is required *");
+    } else if (lastname.length === 0) {
+      setErrorText("* Last name is required *");
+    } else if (phoneNumber.length === 0) {
+      setErrorText("* Phone number is required *");
+    } else if (username.length === 0) {
+      setErrorText("* Username is required *");
+    } else if (password.length === 0) {
+      setErrorText("* Password is required *");
+    } else if (password !== rePassword) {
+      setErrorText("* Passwords do not match *");
     } else {
+      setValidSignIn(true);
       await addUser();
     }
   };
@@ -59,18 +56,18 @@ function Signup() {
   return (
     <div className="flex-col">
       <div className="flex w-full h-screen">
-        <div className="absolute lg:flex w-[65vw] h-[100vh] items-center justify-center bg-gray-200">
+        <div className="hidden md:flex w-[65vw] h-[100vh] items-center justify-center bg-gray-400 duration-1000">
           <img
-            className="w-[35vw] rotate-[25deg] pt-[50px]"
+            className="min-w-[400px] w-[36vw] rotate-[25deg] pt-[50px] duration-1000"
             src={require("../img/2.png")}
             alt="SignUpPic"
           />
         </div>
-        <div className="absolute flex max-w-[66vw] h-[100vh] items-center justify-center lg:w-2/3 bg-white right-0 top-[50%] translate-y-[-50%]">
-          <div className=" w-12/12 w-[35vw] pt-[75px]">
+        <div className="absolute flex lg:max-w-[66vw] h-[100vh] items-center justify-center w-full lg:w-2/3 bg-white right-0 top-[50%] translate-y-[-50%] duration-1000">
+          <div className="w-full px-[15vw] lg:px-[10vw] md:px-[20vw] sm:px-[12vw] pt-[15vh] lg:pt-[10vh] md:pt-[8vh] duration-1000">
             <h1 className="text-3xl font-bold">Sign up to [Title]</h1>
-            <div className="flex flex-row justify-between mt-10">
-              <div className="w-[17vw]">
+            <div className="flex lg:flex-row flex-col justify-normal lg:mt-10 mt-[2vw] gap-5">
+              <div className="flex flex-col w-full">
                 <label className="text-1xl font-medium">First name</label>
                 <input
                   className="bg-gray-200 w-full bordedr-2 border-gray-100 rounded-xl p-2 mt-2 text-1xl"
@@ -80,7 +77,7 @@ function Signup() {
                   }}
                 />
               </div>
-              <div className="w-[17vw]">
+              <div className="flex flex-col w-full">
                 <label className="text-1xl font-medium">Last name</label>
                 <input
                   className="bg-gray-200 w-full bordedr-2 border-gray-100 rounded-xl p-2 mt-2 text-1xl"
