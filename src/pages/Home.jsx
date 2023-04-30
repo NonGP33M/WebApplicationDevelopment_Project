@@ -77,14 +77,11 @@ function Home() {
           <p className="lg:text-[4rem] text-[3rem] duration-500">
             จะกินอะไรก็สั่งมา
           </p>
-          <p className="lg:text-[2rem] text-[1.5rem] duration-500">
-            - ไอ้พวกเวร -
-          </p>
           <Link
             to={token ? "/order" : "/sign_in"}
             className="flex justify-center"
           >
-            <h2 className="text-[1.5rem] rounded-lg border-4 drop-shadow-sm border-black mt-10 px-[30px] hover:bg-black hover:text-white duration-500">
+            <h2 className="lg:text-[1.5rem] text-[2rem] rounded-lg border-4 drop-shadow-sm bg-white border-black mt-10 px-[30px] hover:bg-black hover:text-white duration-500">
               Order now!
             </h2>
           </Link>

@@ -3,12 +3,17 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { getCookie, deleteCookie } from "cookies-next";
 import jwtDecode from "jwt-decode";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
 const Nav = () => {
   const [user, setUser] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
   const token = getCookie("accessToken");
   const navigate = useNavigate();
 
+  const setOpen = () => {
+    setIsOpen(!isOpen);
+  };
   const getUser = async () => {
     try {
       await axios
@@ -40,18 +45,94 @@ const Nav = () => {
   }, []);
 
   return (
-    <div className="container fixed z-50 bg-zinc-900 shadow flex justify-between w-full h-[10vh] min-w-full items-center font-kanit drop-shadow-xl">
-      <div className="flex text-white mx-12 text-xl">
+    <div className="container fixed z-50 bg-zinc-900 shadow flex justify-between w-full h-[108px] min-w-full items-center font-kanit drop-shadow-xl">
+      <div className="flex text-white mx-12 text-xl justify-between items-center w-full">
         <Link className="mx-4 text-xl" to="/#">
-          [Title]
+          จะกินอะไรก็สั่งมา
         </Link>
+        <span className={"cursor-pointer mx-12 md:hidden flex duration-500"}>
+          <FontAwesomeIcon
+            icon={faBars}
+            onClick={setOpen}
+            className="text-white text-[2rem]"
+          />{" "}
+        </span>
       </div>
-
-      {/* Before Signed In */}
-      <div className="flex mx-12 text-white justify-between items-center">
+      <ul
+        className={`md:hidden z-[0] absolute w-screen lg:opacity-0 top-[108px]  transition-all ease-in duration-500 ${
+          isOpen ? "left-0 opacity-90 bg-zinc-800" : "left-[-1000px] opacity-0 "
+        }`}
+      >
+        {token ? (
+          <>
+            <li className="text-white hover:bg-white py-4 px-10">
+              <Link to="/" className="hover:text-black duration-500">
+                Home
+              </Link>
+            </li>
+            <li className="text-white hover:bg-white py-4 px-10">
+              <Link to="/scoreBoard" className="hover:text-black duration-500">
+                Scoreboard
+              </Link>
+            </li>
+            <li className="text-white hover:bg-white py-4 px-10">
+              <Link to="/order" className="hover:text-black duration-500">
+                Order
+              </Link>
+            </li>
+            <li className="text-white hover:bg-white py-4 px-10">
+              <Link to="/profile" className="hover:text-black  duration-500">
+                Profile
+              </Link>
+            </li>
+            <li className="text-white block md:hidden  py-4 px-10">
+              <Link
+                onClick={signOutEvent}
+                className="hover:text-black  duration-500"
+              >
+                Sign Out
+              </Link>
+            </li>
+          </>
+        ) : (
+          <>
+            <li className="text-white hover:bg-white py-4 px-10">
+              <Link to="/" className="hover:text-black duration-500">
+                Home
+              </Link>
+            </li>
+            <li className="text-white hover:bg-white py-4 px-10">
+              <Link to="/scoreBoard" className="hover:text-black duration-500">
+                Scoreboard
+              </Link>
+            </li>
+            <li className="text-white hover:bg-white py-4 px-10">
+              <Link to="/sign_in" className="hover:text-black duration-500">
+                Sign in
+              </Link>
+            </li>
+            <li className="text-white hover:bg-white py-4 px-10">
+              <Link to="/sign_up" className="hover:text-black duration-500">
+                Sign up
+              </Link>
+            </li>
+          </>
+        )}
+      </ul>
+      <div
+        className={
+          "hidden md:flex mx-12 text-white justify-between items-center"
+        }
+      >
         {token == null && (
-          <div>
-            <Link className="mx-4 text-xl" to="/sign_in">
+          <div className="flex items-center whitespace-nowrap mx-12">
+            <Link className="mx-4 text-xl" to="/#">
+              Home
+            </Link>
+            <Link className="mx-4 text-xl" to="/scoreboard">
+              Scoreboard
+            </Link>
+            <Link className="flex mx-4 text-xl" to="/sign_in">
               Sign in
             </Link>
             <Link
@@ -63,7 +144,7 @@ const Nav = () => {
           </div>
         )}
         {token != null && (
-          <div className=" hidden md:flex items-center ">
+          <div className="flex items-center whitespace-nowrap mx-12">
             <Link className="mx-4 text-xl" to="/#">
               Home
             </Link>
