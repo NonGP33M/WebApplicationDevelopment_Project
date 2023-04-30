@@ -61,61 +61,41 @@ const Nav = () => {
       </div>
       <ul
         className={`md:hidden z-[0] absolute w-screen lg:opacity-0 top-[80px]  transition-all ease-in duration-500 ${
-          isOpen ? "left-0 opacity-90 bg-zinc-800" : "left-[-1000px] opacity-0 "
+          isOpen ? "left-0 opacity-90 bg-zinc-800" : "left-[-1000px] opacity-0"
         }`}
+        onClick={setOpen}
       >
         {token ? (
           <>
-            <li className="text-white hover:bg-white py-4 px-10">
-              <Link to="/" className="hover:text-black duration-500">
-                Home
-              </Link>
+            <li className="text-white hover:bg-white py-4 px-10 hover:text-black duration-500">
+              <Link to="/">Home</Link>
             </li>
-            <li className="text-white hover:bg-white py-4 px-10">
-              <Link to="/scoreBoard" className="hover:text-black duration-500">
-                Scoreboard
-              </Link>
+            <li className="text-white hover:bg-white py-4 px-10 hover:text-black duration-500">
+              <Link to="/scoreBoard">Scoreboard</Link>
             </li>
-            <li className="text-white hover:bg-white py-4 px-10">
-              <Link to="/order" className="hover:text-black duration-500">
-                Order
-              </Link>
+            <li className="text-white hover:bg-white py-4 px-10 hover:text-black duration-500">
+              <Link to="/order">Order</Link>
             </li>
-            <li className="text-white hover:bg-white py-4 px-10">
-              <Link to="/profile" className="hover:text-black  duration-500">
-                Profile
-              </Link>
+            <li className="text-white hover:bg-white py-4 px-10 hover:text-black duration-500">
+              <Link to="/profile">Profile</Link>
             </li>
-            <li className="text-white block md:hidden  py-4 px-10">
-              <Link
-                onClick={signOutEvent}
-                className="hover:text-black  duration-500"
-              >
-                Sign Out
-              </Link>
+            <li className="text-white hover:bg-white py-4 px-10 hover:text-black duration-500">
+              <Link onClick={signOutEvent}>Sign Out</Link>
             </li>
           </>
         ) : (
           <>
-            <li className="text-white hover:bg-white py-4 px-10">
-              <Link to="/" className="hover:text-black duration-500">
-                Home
-              </Link>
+            <li className="text-white hover:bg-white py-4 px-10 hover:text-black duration-500">
+              <Link to="/">Home</Link>
             </li>
-            <li className="text-white hover:bg-white py-4 px-10">
-              <Link to="/scoreBoard" className="hover:text-black duration-500">
-                Scoreboard
-              </Link>
+            <li className="text-white hover:bg-white py-4 px-10 hover:text-black duration-500">
+              <Link to="/scoreBoard">Scoreboard</Link>
             </li>
-            <li className="text-white hover:bg-white py-4 px-10">
-              <Link to="/sign_in" className="hover:text-black duration-500">
-                Sign in
-              </Link>
+            <li className="text-white hover:bg-white py-4 px-10 hover:text-black duration-500">
+              <Link to="/sign_in">Sign in</Link>
             </li>
-            <li className="text-white hover:bg-white py-4 px-10">
-              <Link to="/sign_up" className="hover:text-black duration-500">
-                Sign up
-              </Link>
+            <li className="text-white hover:bg-white py-4 px-10 hover:text-black duration-500">
+              <Link to="/sign_up">Sign up</Link>
             </li>
           </>
         )}
@@ -126,7 +106,7 @@ const Nav = () => {
         }
       >
         {token == null && (
-          <div className="flex items-center whitespace-nowrap mx-12">
+          <div className="flex items-center whitespace-nowrap">
             <Link className="mx-4 text-xl" to="/#">
               Home
             </Link>
@@ -145,7 +125,7 @@ const Nav = () => {
           </div>
         )}
         {token != null && (
-          <div className="flex items-center whitespace-nowrap mx-12">
+          <div className="flex items-center whitespace-nowrap">
             <Link className="mx-4 text-xl" to="/#">
               Home
             </Link>
