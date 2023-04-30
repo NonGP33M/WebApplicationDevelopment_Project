@@ -39,20 +39,24 @@ function Signin() {
   return (
     <div className="flex-col">
       <div className="flex w-full">
-        <div className="lg:flex w-[60vw] h-[100vh] items-center justify-center bg-gray-200">
+        <div className="hidden md:flex w-0 md:w-[60vw] h-[100vh] items-center justify-center bg-gray-400">
           <img
-            className="w-[43vw] rotate-[25deg] pt-[50px]"
+            className="w-[43vw] min-w-[450px] rotate-[25deg] pt-[50px]"
             src={require("../img/homePic1.png")}
             alt="homePic1"
           />
         </div>
-        <div className="absolute flex max-w-[66vw] h-[100vh] items-center justify-center lg:w-2/3 bg-white right-0 top-[50%] translate-y-[-50%]">
-          <div className=" w-12/12 w-[35vw]">
-            <h1 className="text-3xl font-bold">Sign in to [Title]</h1>
+        <div className="absolute flex md:max-w-[66vw] h-[100vh] items-center justify-center w-full md:w-2/3 bg-white md:right-0 top-[50%] translate-y-[-50%] duration-1000">
+          <div className="w-full px-[15vw] sm:px-[12vw]">
+            <h1 className="md:text-[2rem] text-[2rem] font-bold">
+              Sign in to [Title]
+            </h1>
             <div className="mt-10">
-              <label className="text-1xl font-medium">Username</label>
+              <label className="md:text-[1.5rem] text-[1.2rem] font-medium">
+                Username
+              </label>
               <input
-                className="bg-gray-200 w-full bordedr-2 border-gray-100 rounded-xl p-2 mt-2 text-1xl"
+                className="bg-gray-200 w-full bordedr-2 border-gray-100 rounded-xl p-2 mt-2 md:px-[1.5vw] px-[5vw]"
                 placeholder="Enter your username"
                 onChange={(event) => {
                   setUsername(event.target.value);
@@ -61,9 +65,11 @@ function Signin() {
               />
             </div>
             <div className="mt-3">
-              <label className="text-1xl font-medium">Password</label>
+              <label className="md:text-[1.5rem] text-[1.2rem] font-medium">
+                Password
+              </label>
               <input
-                className="bg-gray-200 w-full bordedr-2 border-gray-100 rounded-xl p-2 mt-2 text-1xl"
+                className="bg-gray-200 w-full bordedr-2 border-gray-100 rounded-xl p-2 mt-2 text-1xl md:px-[1.5vw] px-[5vw]"
                 placeholder="Enter your password"
                 type="password"
                 onChange={(event) => {
@@ -80,7 +86,7 @@ function Signin() {
                 Sign in
               </h2>
             </div>
-            <h2 className="my-[10px] text-center text-red-600 h-10">
+            <h2 className="md:text-[1.2rem] text-[1rem] my-[10px] text-center text-red-600 h-10">
               {invalid ? "* Invalid username or password *" : ""}
             </h2>
           </div>

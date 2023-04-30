@@ -1,8 +1,36 @@
-import React from "react";
+import { React, useState, useEffect } from "react";
 import Footer from "../components/Footer";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { getCookie, deleteCookie } from "cookies-next";
+import jwtDecode from "jwt-decode";
 
 function Home() {
+  const token = getCookie("accessToken");
+  const getUser = async () => {
+    try {
+      await axios
+        .get(
+          `https://localhost:5267/api/User/GetUserById/${
+            jwtDecode(token).UserId
+          }`
+        )
+        .then((response) => {
+          console.log("Signed In");
+        });
+    } catch (error) {
+      deleteCookie("accessToken");
+      console.log("No token");
+      console.log(token);
+    }
+  };
+
+  useEffect(() => {
+    if (token) {
+      getUser();
+    }
+  }, []);
+
   const profile = [
     {
       url: require("../img/Paan.jpg"),
@@ -52,7 +80,10 @@ function Home() {
           <p className="lg:text-[2rem] text-[1.5rem] duration-500">
             - ไอ้พวกเวร -
           </p>
-          <Link to={"/order"} className="flex justify-center">
+          <Link
+            to={token ? "/order" : "/sign_in"}
+            className="flex justify-center"
+          >
             <h2 className="text-[1.5rem] rounded-lg border-4 drop-shadow-sm border-black mt-10 px-[30px] hover:bg-black hover:text-white duration-500">
               Order now!
             </h2>
@@ -77,7 +108,6 @@ function Home() {
                     key={key}
                   >
                     <img src={item.url} alt="Oot" className={item.style} />
-                    {console.log(item.url)}
                   </div>
                   <div className="pt-[1vw]">
                     <div className="text-[2rem]">{item.id}</div>

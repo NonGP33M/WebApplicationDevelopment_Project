@@ -40,7 +40,7 @@ const Nav = () => {
   }, []);
 
   return (
-    <div className="container fixed z-50 bg-zinc-900 shadow flex justify-between w-full h-20 min-w-full items-center font-kanit drop-shadow-xl">
+    <div className="container fixed z-50 bg-zinc-900 shadow flex justify-between w-full h-[10vh] min-w-full items-center font-kanit drop-shadow-xl">
       <div className="flex text-white mx-12 text-xl">
         <Link className="mx-4 text-xl" to="/#">
           [Title]
@@ -63,7 +63,7 @@ const Nav = () => {
           </div>
         )}
         {token != null && (
-          <div>
+          <div className=" hidden md:flex items-center ">
             <Link className="mx-4 text-xl" to="/#">
               Home
             </Link>
@@ -75,21 +75,27 @@ const Nav = () => {
             </Link>
             <h2
               tabIndex={0}
-              className="mx-4 text-xl dropdown dropdown-end cursor-pointer"
+              className="mx-4 text-xl dropdown dropdown-end rounded-lg border-2 py-1 px-2  hover:bg-white hover:text-black cursor-pointer duration-500"
             >
               {user ? user.username : ""}
 
               <ul
                 tabIndex={0}
-                className="menu dropdown-content p-1 shadow bg-zinc-800 rounded-box w-40 mt-2"
+                className="menu dropdown-content p-1 shadow hover:bg-zinc-800 bg-zinc-800 hover:text-white text-white rounded-box w-40 mt-2 duration-1000"
               >
                 <li>
-                  <Link className="mx-4 text-xl" to="/profile">
+                  <Link
+                    className="mx-4 text-xl hover:bg-zinc-600"
+                    to="/profile"
+                  >
                     Profile
                   </Link>
                 </li>
                 <li>
-                  <Link className="mx-4 text-xl" onClick={() => signOutEvent()}>
+                  <Link
+                    className="mx-4 text-xl hover:bg-zinc-600"
+                    onClick={() => signOutEvent()}
+                  >
                     Sign Out
                   </Link>
                 </li>
