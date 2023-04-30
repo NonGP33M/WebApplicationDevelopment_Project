@@ -40,7 +40,7 @@ export const ScoreboardBox = () => {
 
   return (
     <Fragment>
-      <div className="md:w-[60%] w-[80%] mx-auto">
+      <div className="md:w-[60%] w-[80%] mx-auto min-w-[327px]">
         <h1 className="mt-8 text-2xl">Scoreboard</h1>
         <div>
           {allTopUser

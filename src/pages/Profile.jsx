@@ -33,20 +33,20 @@ function Profile() {
 
   return (
     <div className="flex h-screen w-full bg-gray-400 justify-center items-center">
-      <div className="flex h-[50vh] w-[70vw] justify-center bg-white items-center rounded-2xl">
-        <div className="md:flex-row flex w-[70vw] px-[2vw] justify-between items-center">
+      <div className="flex sm:h-[50vh] h-[70vh] sm:mt-0 mt-[10vh] w-[70vw] justify-center bg-white items-center rounded-2xl">
+        <div className="flex-col lg:flex-row flex w-[70vw] px-[2vw] justify-between items-center">
           <img
             className="rounded-full min-w-[200px] w-[20vw]"
             src="https://www.nicepng.com/png/detail/274-2744819_people-silhouette-avatar-business-man-icon.png"
             alt="user"
           />
-          <div className="flex flex-row">
-            <div className="flex flex-col w-[30vw] pl-2">
-              <p className="lg:text-6xl md:text-4xl font-bold">
+          <div className="flex sm:flex-row flex-col justify-around items-center w-full min-w-[390px]">
+            <div className="flex flex-col sm:w-[30vw] pl-2 sm:mb-0 mb-[5vh] sm:text-left text-center w-full">
+              <p className="lg:text-6xl md:text-4xl text-2xl font-bold">
                 {user ? user.username : "[Username]"}
               </p>
               <br />
-              <span className="lg:text-3xl md:text-2xl">
+              <span className="lg:text-3xl md:text-2xl whitespace-nowrap">
                 {user ? user.firstName : "[Firstname]"}{" "}
                 {user ? user.lastName : "[Lastname]"}
               </span>
@@ -55,7 +55,7 @@ function Profile() {
                 {user ? user.tel : "Tel: []"}
               </p>
             </div>
-            <div className="flex flex-col w-[10vw]">
+            <div className="flex flex-col">
               <p className="flex justify-center text-2xl font-bold">Score</p>
               <p className="flex justify-center text-5xl">
                 {user ? user.score : "--"}
